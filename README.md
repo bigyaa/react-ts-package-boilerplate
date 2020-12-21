@@ -1,4 +1,4 @@
-# Setup to add new feature
+# Setup to create a package ready to be published
 
 1. [Add New Project Code](#add-project-code)
 2. [Install Package Dependencies](#install-package-dependencies)
