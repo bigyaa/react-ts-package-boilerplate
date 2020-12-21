@@ -1,0 +1,50 @@
+{
+  "name": "@fuse-features/gradebook-school",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "lint": "eslint src/**/*.{ts,tsx,js,jsx} --fix",
+    "format": "prettier src/**/*.{js,jsx,ts,tsx,md,html,css,scss} --write",
+    "build:feature": "yarn build:babel && yarn build:types && node ./scripts/copyTS.js",
+    "build:babel": "yarn build:babel:esm && yarn build:babel:umd && yarn build:babel:cjs",
+    "build:babel:cjs": "BABEL_ENV=cjs babel --source-maps --extensions \".js,.ts,.tsx\" src --out-dir dist/js --presets=@babel/env",
+    "build:babel:esm": "BABEL_ENV=esm babel --source-maps --extensions \".js,.ts,.tsx\" src --out-dir dist/esm",
+    "build:babel:umd": "BABEL_ENV=umd babel --source-maps --extensions \".js\" dist/esm --out-dir dist/umd --plugins=transform-es2015-modules-umd",
+    "build:types": "tsc -p tsconfig.gen-dts.json",
+    "clean": "rimraf dist",
+    "develop": "yarn build:types && yarn build:babel:esm --skip-initial-build --watch --verbose"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "dependencies": {
+    "node-sass": "^4.14.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
+    "recursive-fs": "^2.1.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.12.8",
+    "@babel/plugin-proposal-export-default-from": "^7.12.1",
+    "react-scripts": "^4.0.1",
+    "@types/react": "^16.9.52",
+    "@types/react-dom": "^16.9.8",
+    "@types/react-router-dom": "^5.1.6",
+    "babel-plugin-transform-es2015-modules-umd": "^6.24.1",
+    "babel-plugin-typescript-to-proptypes": "^1.4.2",
+    "mkdirp": "0.5.5",
+    "rimraf": "^2.7.1",
+    "typescript": "^4.0.3"
+  }
+}
